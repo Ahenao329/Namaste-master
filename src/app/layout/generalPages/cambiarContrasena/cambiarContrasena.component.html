@@ -1,0 +1,76 @@
+<div id="mainDiv">
+    <div>
+        <h3>{{titulo}}</h3>
+        <hr />
+    </div>
+
+    <form role="form" id="form-Docs" class="pt-3" [formGroup]="loginForm" novalidate>
+        <div class="form-content col-md-12 divMain vertical-center">
+            <div class="row col-md-12 justify-content-md-center divInterno">
+                <div class="col-md-6 col-sm-6 col-xs-12 divIzquierdo">
+                    <div class="col-sm-12">
+                        <div class="form-row">
+                            <div class="col-sm-12">
+                                <mat-form-field class="col-md-11">
+                                    <input matInput placeholder="Contraseña actual" [type]="hide ? 'password' : 'text'"
+                                        formControlName="passwordActual" required>
+                                    <mat-error *ngFor="let validation of errors.Requerido">
+                                        <mat-error class="error-message" *ngIf="loginForm.get('passwordActual').hasError(validation.type) 
+                          && (loginForm.get('passwordActual').dirty || loginForm.get('passwordActual').touched)">
+                                            {{validation.message}}
+                                        </mat-error>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div formGroupName="passwordGroup" class="form-row">
+                            <div class="col-sm-12">
+                                <mat-form-field class="col-md-11">
+                                    <input matInput placeholder="Nueva contraseña" [type]="hide ? 'password' : 'text'"
+                                        formControlName="password" required>
+                                    <mat-error *ngFor="let validation of errors.password">
+                                        <mat-error class="error-message" *ngIf="loginForm.get('passwordGroup').get('password').hasError(validation.type) 
+                                                    && (loginForm.get('passwordGroup').get('password').dirty || loginForm.get('passwordGroup').get('password').touched)">
+                                            {{validation.message}}
+                                        </mat-error>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <mat-form-field class="col-md-11">
+                                    <input matInput placeholder="Confirmar contraseña" [type]="hide ? 'password' : 'text'"
+                                        formControlName="confirmPassword" [errorStateMatcher]="confirmValidParentMatcher"
+                                        required>
+                                    <mat-error *ngFor="let validation of errors.confirmPassword">
+                                        <mat-error class="error-message" *ngIf="(loginForm.get('passwordGroup').get('confirmPassword').hasError(validation.type)|| loginForm.get('passwordGroup').hasError(validation.type)) 
+                                                    && (loginForm.get('passwordGroup').get('confirmPassword').dirty || loginForm.get('passwordGroup').get('confirmPassword').touched)">
+                                            {{validation.message}}
+                                        </mat-error>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-11 text-center mt-2">
+                                <button mat-raised-button [disabled]="loginForm.invalid" class="btn rounded-btn btnLogin"
+                                    (click)="onGuardar()">
+                                    <span class="fa fa-sign-in-alt"></span>Guardar</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6  col-sm-4 col-xs-12 divDerecho ">
+                    <div class="col-md-11 divInstrucciones">
+                        <h6 class="txtSubTitulo">Instrucciones</h6>
+                        <div>Aquí puede establecer la nueva contraseña, esta debe tener al menos 6 caracteres, contener
+                            al
+                            menos un
+                            número, una letra mayúscula y una minúscula.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

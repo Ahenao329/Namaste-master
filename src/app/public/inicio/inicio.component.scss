@@ -1,0 +1,60 @@
+@import "src/assets/config/cliente/styles/variables.scss";
+.float-boton-iniciar-sesion {
+	position: relative;
+	width: 35%;
+	height: auto;
+	bottom: 50px;
+	left: 4%;
+	background-color: var(--color-principal);
+	color: #fff;
+	text-align: center;
+	opacity: 1;
+}
+
+
+.text-caja-herramienta {
+	position: relative;
+	width: 28%;
+	height: auto;
+	bottom: 90px;
+	left: 55%;
+	color: var(--color-principal);
+	text-align: center;
+	opacity: 1;
+	font-weight: bold;
+	font-size: 33px;
+}
+
+.div-emocion {
+	background: var(--color-secundario);
+	border-radius: 20px;
+	height: 300px;
+	text-align: center;
+}
+.div-caja-herramienta {
+	background:var(--color-terciario);
+	border-radius: 20px;
+	height: 300px;
+	text-align: center;
+}
+
+.img-emocion
+{
+	max-height: 300px;
+}
+
+.text-emocion {
+	position: relative;
+	width: 28%;
+	height: auto;
+	bottom: 90px;
+	color: var(--color-principal);
+	text-align: center;
+	opacity: 1;
+	left:15%;
+	font-weight: bold;
+	font-size: 33px;
+}
+.noHover{
+	text-decoration:none;
+}

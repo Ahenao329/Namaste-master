@@ -1,0 +1,9 @@
+<div mat-dialog-content class="text-center">
+    <img class="user-avatar mt-3" src={{rutaImagen}} width="100px" />
+    <h2 mat-dialog-title class="mt-4"> {{data.titulo}}</h2>
+    <div class="mt3 mb-3" [innerHTML]="data.descripcion"></div>
+</div>
+<div mat-dialog-actions class="col-md-12 text-center" style="display:block !important;">
+    <button mat-button (click)="onNoClick()" class="btn rounded-btn btnSecundario" *ngIf="_mostrarCancelar">{{data.textoCancelar}}</button>
+    <button mat-button cdkFocusInitial (click)="onOkClick()" class="btn rounded-btn btnPpal" *ngIf="_mostrarAceptar">{{data.textoAceptar}}</button>
+</div>

@@ -1,0 +1,160 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+    <div class="list-group">
+        <!--<div class="form-row col-sm-12 infoPerfil mt-1 mb-1">
+            <div class="col-sm-2" style="font-size: 3em">
+                <i class="fa fa-user-circle" style="height:50px;"></i>
+            </div>
+            <div class="col-sm-10">
+                <div style="margin-left: 10px;">
+                    <div class="col-sm-12 lblNombreUsuario mt-2">{{_nombreUsuario}}</div>
+                    <div class="col-sm-12 lblPerfil ">{{_perfilUsuario}}</div>
+                </div>
+            </div>
+        </div>-->
+        <a routerLink="/{{_appConfig.routes.dashboard}}" [routerLinkActive]="['router-link-active']"
+            class="list-group-item" >
+            <img src="assets/images/logo.png" class="logo-inicio" /><span class="label-inicio">&nbsp;namasté</span>
+        </a>
+        <div class="nested-menu" *ngIf="this._verItemAdministracion">
+            <a class="list-group-item" (click)="addExpandClass('pages')">
+                <span>
+                    <i class="fa fa-th-large"></i>&nbsp; {{ 'Administración' }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'pages'">
+                <ul class="submenu">
+                                                     
+                    <li *ngIf="this._verParametrosFuncionales">
+                        <a routerLink="/{{_appConfig.routes.ParametrosFuncionales}}"
+                            [routerLinkActive]="['router-link-active']">
+                            <span>{{ 'Parámetros funcionales'}}</span>
+                        </a>
+                    </li>
+                    <li *ngIf="this._verParametrosHTML">
+                        <a routerLink="/{{_appConfig.routes.ParametrosHTML}}"
+                            [routerLinkActive]="['router-link-active']">
+                            <span>{{ 'Parámetros HTML'}}</span>
+                        </a>
+                    </li>     
+                    <li *ngIf="this._verCargos">
+                        <a routerLink="/{{_appConfig.routes.Cargos}}" [routerLinkActive]="['router-link-active']">
+                            <span>{{ 'Cargo/Profesión' }}</span>
+                        </a>
+                    </li>
+                    <li *ngIf="this._verAreas">
+                        <a routerLink="/{{_appConfig.routes.Area}}" [routerLinkActive]="['router-link-active']">
+                            <span>{{ 'Áreas' }}</span>
+                        </a>
+                    </li>
+                    <li *ngIf="this._verDiasFestivos">
+                        <a routerLink="/{{_appConfig.routes.DiaFestivo}}" [routerLinkActive]="['router-link-active']">
+                            <span>{{ 'Días festivos' }}</span>
+                        </a>
+                    </li> 
+                    <li *ngIf="this._verContenidoAdicionalCorreo">
+                        <a routerLink="/{{_appConfig.routes.MaterialAdicionalCorreo}}" [routerLinkActive]="['router-link-active']">
+                            <span>{{ 'Material adicional correo' }}</span>
+                        </a>
+                    </li>
+                    <li *ngIf="this._verCategoriaHerramientaCaja">
+                        <a routerLink="/{{_appConfig.routes.CategoriaHerramientaCaja}}" [routerLinkActive]="['router-link-active']">
+                            <span>{{ 'Categorías de herramienta' }}</span>
+                        </a>
+                    </li> 
+                    <li *ngIf="this._verHerramientaCaja">
+                        <a routerLink="/{{_appConfig.routes.HerramientaCaja}}" [routerLinkActive]="['router-link-active']">
+                            <span>{{ 'Caja de herramientas' }}</span>
+                        </a>
+                    </li>            
+                    <li *ngIf="this._verUsuarios">
+                        <a routerLink="/{{_appConfig.routes.Usuarios}}" [routerLinkActive]="['router-link-active']">
+                            <span>{{ 'Usuarios' }}</span>
+                        </a>
+                    </li>
+                    <li *ngIf="this._verTipoEmocion">
+                        <a routerLink="/{{_appConfig.routes.TipoEmocion}}" [routerLinkActive]="['router-link-active']">
+                            <span>{{ 'Tipo de emoción' }}</span>
+                        </a>
+                    </li>
+                    <li *ngIf="this._verCategoriaHerramientaListarPopupComponent">
+                        <a routerLink="/{{_appConfig.routes.CategoriaHerramientaListarPopupComponent}}" [routerLinkActive]="['router-link-active']">
+                            <span>{{ 'Categoria de herramientas popup' }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+
+        <div class="nested-menu" *ngIf="this._verItemNegocio">
+            <a class="list-group-item" (click)="addExpandClass('gestion')">
+                <span> <i class="fa fa-plus"></i>&nbsp; {{ "Gestión" }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'gestion'">
+                <ul class="submenu">                                                     
+                    <li *ngIf="this._verHerramientaCajaConsultar">
+                        <a routerLink="/{{_appConfig.routes.HerramientaCajaBuscar}}"
+                            [routerLinkActive]="['router-link-active']">
+                            <span>{{ 'Caja de Herramientas'}}</span>
+                        </a>
+                    </li>               
+                    <li *ngIf="this._verBotonPanico">
+                        <a routerLink="/{{_appConfig.routes.BotonPanico}}"
+                            [routerLinkActive]="['router-link-active']">
+                            <span>{{ 'Alertas de pánico'}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+
+        <div class="nested-menu" *ngIf="this._verItemInformes">
+            <a class="list-group-item" (click)="addExpandClass('informes')">
+                <span>
+                    <i class="fa fa-plus"></i>&nbsp; {{ 'Informes' }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'informes'">
+                <ul class="submenu">                                                     
+                    <li *ngIf="this._verReporteDistribucion">
+                        <a routerLink="/{{_appConfig.routes.ReporteDistribucion}}"
+                            [routerLinkActive]="['router-link-active']">
+                            <span>{{ 'Reporte distribución'}}</span>
+                        </a>
+                    </li>
+                    <li *ngIf="this._verReporteHistograma">
+                        <a routerLink="/{{_appConfig.routes.ReporteHistograma}}"
+                            [routerLinkActive]="['router-link-active']">
+                            <span>{{ 'Reporte histograma'}}</span>
+                        </a>
+                    </li>
+                 
+                </ul>
+            </li>
+        </div>
+      
+        <div class="header-fields">
+
+            <div class="nested-menu">
+                <a class="list-group-item" (click)="addExpandClass('profile')">
+                    <span>
+                        <i class="fa fa-user"></i>&nbsp; {{_nombreUsuario}}</span>
+                </a>
+                <li class="nested" [class.expand]="showMenu === 'profile'">
+                    <ul class="submenu">
+                        <li>
+                            <a routerLink="/{{_appConfig.routes.CambiarContra}}"
+                                [routerLinkActive]="['router-link-active']">
+                                <span>
+                                    <i class="fa fa-unlock-alt"></i>&nbsp; {{'Cambiar contraseña'}}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/login']" (click)="onLoggedout()">
+                                <span>
+                                    <i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+        </div>
+    </div>
+</nav>

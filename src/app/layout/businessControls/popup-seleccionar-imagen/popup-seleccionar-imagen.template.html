@@ -1,0 +1,68 @@
+<div mat-dialog-content class="mb-1">
+    <div>
+        <h2 mat-dialog-title class="text-center"><i class="fa fa-picture-o" aria-hidden="true"></i>
+            Seleccionar imagen</h2>        
+    </div>
+
+    <div class="col-sm-12 text-center pt-3" class="divError" *ngIf="_mostrarDivError">
+        {{_errorMostrar}}
+    </div>
+
+    <div class="form-row p-2 left">
+        <div class="col-sm-12">
+            <button mat-raised-button [disabled]="false" type="button" class="btn rounded-btn btnTerciario"
+                (click)="fileUpload.click()">{{_textoAgregarImagen}} *</button>&nbsp; (jpg, jpeg o png)
+        </div>
+        <div class="mt-2" style="display: none;">
+            <input type='file' id='input' #inputFileUpload accept="image/jpg, image/jpeg, image/png"
+                (change)="compress($event)" #fileUpload>
+        </div>
+    </div>
+    
+    <hr>
+        
+    <div class="form-row col-sm-12">
+        <div class="col-sm-8 divFoto">
+            <image-cropper
+                [imageFile]="imageSelectedBlog"
+                [maintainAspectRatio]="true"
+                [containWithinAspectRatio]="true"
+                [aspectRatio]="1 / 1"
+                [resizeToWidth]="800"
+                [cropperMinWidth]="128"
+                [onlyScaleDown]="true"
+                [roundCropper]="false"                                
+                [alignImage]="'left'"
+                [style.display]="showCropper ? null : 'none'"
+                format="jpeg"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded()"                
+                (loadImageFailed)="loadImageFailed()"
+            ></image-cropper>
+
+        </div>
+
+        <div class="col-sm-4 divFoto" *ngIf="showCropper">
+            <!--<div *ngIf="_mostrarNueva">
+                <img class="user-avatar" [src]="this.domSanitizer.bypassSecurityTrustResourceUrl(_imagenBase64)">
+            </div>
+            <div *ngIf="!_mostrarNueva">
+                <img class="user-avatar" [src]="_rutaImagenExistente">
+            </div>-->
+            <img class="img-preview " [src]="_imagenBase64">
+        </div>
+    </div>
+</div>
+
+<div mat-dialog-actions class="col-md-12 text-center">
+
+ 
+    <div class="form-row p-2 left">
+        <button mat-raised-button class="btn rounded-btn btnPpal" type="button" (click)="onOkClick()">Aceptar</button>
+
+        <button mat-raised-button class="btn rounded-btn btnSecundario" style="margin-left: 30px !important;"
+            type="button" (click)="onNoClick()">Cancelar</button>&nbsp;
+    </div>
+
+
+</div>

@@ -1,0 +1,25 @@
+<div class="div-main" style="padding: 15px;">
+    <div *ngIf="!verificarSesion()" style="max-width: 1200px;margin: auto;" [@routerTransition]>
+        <img src="assets/images/inicio/main-dash-public.png" style="width: 100%;
+        height: auto;">
+        <button (click)="onSubmit()" class="btn float-boton-iniciar-sesion">iniciar sesión</button>
+    </div>
+    <br>
+    <div style="max-width: 1200px;margin: auto;">
+        <a class="noHover" routerLink="/{{_appConfig.routes.HerramientaCajaBuscar}}">
+            <div *ngIf="verificarSesion()"  class="div-caja-herramienta">
+                <img class="img-fluid img-emocion" src="assets/images/inicio/Caja-herramienta.png">
+                <h2 class="text-caja-herramienta">Caja de herramientas</h2>
+            </div>
+        </a>
+    </div>
+    <br>
+    <div style="max-width: 1200px;margin: auto;">
+        <a class="noHover" routerLink="/{{_appConfig.routes.ReporteHistograma}}">
+            <div *ngIf="verificarSesion()" class="div-emocion">
+                <img class="img-fluid img-emocion" src="assets/images/inicio/Emociones.png">
+                <h2 class="text-emocion ">Emociones</h2>
+            </div>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="form-content col-md-12 divMain vertical-center">
+    <div class="row col-md-12 justify-content-md-center divInterno">
+        <div class="col-md-5 col-sm-5 col-xs-12 divIzquierdo">
+            <form role="form" [formGroup]="userForm" novalidate>
+                <div class="form-group col-md-12 divlogo">
+                    <img src="assets/images/logo-con-texto.png" class="logoCC" />
+                </div>
+                <div class="col-md-12 mt-5">
+                    <div class="col-md-12 text-left">
+                        <h6 class="txtSubTitulo">{{_titulo}}</h6>
+                        <br>
+                        <br>
+                        <h6 class="txtSubTitulo2">Por favor digite el correo electrónico registrado</h6>
+                    </div>
+
+                    <div class="form-row col-md-12 text-left" style="padding-left :0px !important;">
+                        <div class="col-md-12">
+                            <mat-form-field class="col-sm-11 LabelForm">
+                                <input matInput placeholder="Correo electrónico" type="text" formControlName="email"
+                                    maxlength="100" required>
+                                <mat-error *ngFor="let validation of errors.emailSeguridad">
+                                    <mat-error class="error-message" *ngIf="userForm.get('email').hasError(validation.type) 
+                              && (userForm.get('email').dirty || userForm.get('email').touched)">
+                                        {{validation.message}}
+                                    </mat-error>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-left mt-3 mb-4">
+                        <div class="form-group">
+                            <input id="noRobot" class="noRobotCheck" type="checkbox" [(ngModel)]="_noRobot"
+                                name="noRobot" [ngModelOptions]="{standalone: true}" #noRobot="ngModel" />
+                            <label for="noRobot" >&nbsp;No soy un robot</label>
+                        </div>
+                    </div>
+
+
+                    <div class="contenedorBotones">
+                        <div class="col-md-12 divButton">
+                            <div class="col-md-11 text-center mt-2">
+                                <button mat-raised-button class="btn rounded-btn btnSecundario" type="button"
+                                    routerLink="/{{_appConfig.routes.login}}">Cancelar</button>&nbsp;
+
+                                <button mat-raised-button [disabled]="userForm.invalid || !_noRobot"
+                                    class="btn rounded-btn btnLogin" (click)="onEnviar()">
+                                    <span class="fa fa-sign-in-alt"></span>Enviar correo electrónico</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6  col-sm-4 col-xs-12 divDerecho ">
+            <div class="col-md-11 divInstrucciones">
+                <h6 class="txtSubTitulo">Instrucciones</h6>
+                <br>
+                <div>Por favor ingrese el correo electrónico que tiene registrado en el sistema y este le enviará un
+                    enlace de
+                    verificación.
+                    <br>
+                    <br> Un vez que haya recibido el enlace de verificación, podrá elegir una nueva contraseña para su
+                    cuenta.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

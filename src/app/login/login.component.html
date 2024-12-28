@@ -1,0 +1,54 @@
+<div class="login-page" [@routerTransition]>
+    <div class="row justify-content-md-center divContenido">
+        <div class="form-group col-lg-6 col-sm-12 col-xs-12">
+            <div class="form-content col-md-12 ContenedorForm">
+                <form role="form" [formGroup]="loginForm" novalidate class="formlogin">
+                    <div class="icono-namaste">
+                        <img style="max-width: 130px;" src="assets/images/logo-con-texto.png" />
+                    </div>
+                    <br>
+                    <div class="col-md-12 ">
+                        <div class="form-group">
+                        </div>
+                        <div class="form-group">
+                            <mat-form-field appearance="none" style="height: 40px;"
+                                class="col-md-12 text-center my-form-field">
+                                <mat-label></mat-label>
+                                <input matInput placeholder="Correo electrónico" type="text" formControlName="email"
+                                    name="Email">
+                                <mat-error *ngFor="let validation of errors.emailSeguridad">
+                                    <mat-error class="error-message"
+                                        *ngIf="loginForm.get('email').hasError(validation.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+                                        {{validation.message}}</mat-error>
+                                </mat-error>
+                            </mat-form-field>
+                        </div><br>
+                        <div class="form-group ">
+                            <mat-form-field appearance="none" style="height: 40px;"
+                                class="col-md-12 text-center my-form-field">
+                                <mat-label></mat-label>
+                                <input matInput placeholder="Contraseña" formControlName="contrasena" name="Contrasena"
+                                    type="password">
+                                <mat-error *ngFor="let validation of errors.Requerido50">
+                                    <mat-error class="error-message"
+                                        *ngIf="loginForm.get('contrasena').hasError(validation.type) && (loginForm.get('contrasena').dirty || loginForm.get('contrasena').touched)">
+                                        {{validation.message}}</mat-error>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <button type="submit" mat-raised-button class="btn rounded-btn btnLogin" (click)="onLoggedin()">Iniciar
+                                sesión</button>
+                        </div>
+                        <br>
+                        <div class="col-md-12 text-center">
+                            <a routerLink="/{{_appConfig.routes.recordarContrasena}}" class="lblTitulo">
+                                ¿Olvidó su contraseña?
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

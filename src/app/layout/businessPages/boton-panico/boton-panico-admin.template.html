@@ -1,0 +1,139 @@
+<div class="div-main-page" id="mainDiv">
+  <div>
+    <h3>{{titulo}}</h3>
+    <hr />
+  </div>
+
+  <form (ngSubmit)="onSubmit()" id="form-Docs" class="pt-3" [formGroup]="userForm" novalidate>
+    <div class="form-row">
+      <div class="col-sm-6 col-xs-12">
+        <mat-form-field class="col-sm-auto pr-2">
+          <input matInput class="form-control cus-input-calendar" placeholder="Fecha creación" angular-mydatepicker
+            formControlName="fechaCreacionView" [options]="calendarOptions"
+            #dpRDFechaCreacionView="angular-mydatepicker" required readonly />
+          <mat-error *ngFor="let validation of errors.Requerido">
+            <mat-error class="error-message" *ngIf="userForm.get('fechaCreacionView').hasError(validation.type) && (userForm.get('fechaCreacionView').dirty 
+      || userForm.get('fechaCreacionView').touched)">
+              {{validation.message}}
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <div class="div-btn-calendar ml-2">
+          <button type="button" class="btn btn-default cus-btn-calendar"
+            (click)="dpRDFechaCreacionView.toggleCalendar()" [disabled]="_soloLectura">
+            <i class="fa fa-calendar cus-icono-calendar" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-sm-6  col-xs-12">
+        <mat-form-field class="col-md-11">
+          <mat-select placeholder="Usuario" formControlName="idUsuario" required>
+            <mat-option *ngFor="let item of _dataUsuario" [value]="item.idUsuario">
+              {{item.nombre}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngFor="let validation of errors.Requerido">
+            <mat-error class="error-message" *ngIf="userForm.get('idUsuario').hasError(validation.type) 
+      && (userForm.get('idUsuario').dirty || userForm.get('idUsuario').touched)">
+              {{validation.message}}
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-sm-8 col-xs-12">
+        <mat-form-field class="col-sm-11 LabelForm">
+          <input matInput placeholder="Celular" type="text" formControlName="celular" maxlength="50" readonly>
+          <mat-error *ngFor="let validation of errors.Requerido">
+            <mat-error class="error-message" *ngIf="userForm.get('celular').hasError(validation.type) 
+        && (userForm.get('celular').dirty || userForm.get('celular').touched)">
+              {{validation.message}}
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-2 col-xs-12 text-center">
+        <a class="btn btn-sm btn-primary btnPpal mb-2" target="_blank"
+          href="{{this.linkWhatsapp}}">
+          <span class="fab fa-whatsapp" style="font-size: 24px;"></span>          
+        </a>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-sm-8 col-xs-12">
+        <mat-form-field class="col-sm-11 LabelForm">
+          <input matInput placeholder="Correo electrónico" type="text" formControlName="email" maxlength="100" readonly>
+          <mat-error *ngFor="let validation of errors.Requerido">
+            <mat-error class="error-message" *ngIf="userForm.get('email').hasError(validation.type) 
+        && (userForm.get('email').dirty || userForm.get('email').touched)">
+              {{validation.message}}
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-sm-12">
+        <div style="max-width: 1200px">
+          <mat-form-field class="col-sm-11 LabelForm">
+            <textarea rows="4" matInput placeholder="Observación de la solicitud"
+              formControlName="observacionesSolicitante" maxlength="1000" readonly></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-sm-6 col-xs-12">
+        <mat-form-field class="col-sm-auto pr-2">
+          <input matInput class="form-control cus-input-calendar" placeholder="Fecha atención" angular-mydatepicker
+            formControlName="fechaAtencionView" [options]="calendarOptions"
+            #dpRDFechaAtencionView="angular-mydatepicker" required readonly />
+          <mat-error *ngFor="let validation of errors.Requerido">
+            <mat-error class="error-message" *ngIf="userForm.get('fechaAtencionView').hasError(validation.type) && (userForm.get('fechaAtencionView').dirty 
+      || userForm.get('fechaAtencionView').touched)">
+              {{validation.message}}
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+        <div class="div-btn-calendar ml-2">
+          <button type="button" class="btn btn-default cus-btn-calendar"
+            (click)="dpRDFechaAtencionView.toggleCalendar()" [disabled]="_soloLectura">
+            <i class="fa fa-calendar cus-icono-calendar" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-sm-12">
+        <div style="max-width: 1200px">
+          <mat-form-field class="col-sm-11 LabelForm">
+            <textarea rows="4" matInput placeholder="Observaciones atención" formControlName="observacionesAtencion"
+              maxlength="1000" required></textarea>
+            <mat-hint align="start">{{this.userForm.controls.observacionesAtencion.value.length}} / 1.000</mat-hint>
+            <mat-error *ngFor="let validation of errors.Requerido">
+              <mat-error class="error-message" *ngIf="userForm.get('observacionesAtencion').hasError(validation.type) 
+      && (userForm.get('observacionesAtencion').dirty || userForm.get('observacionesAtencion').touched)">
+                {{validation.message}}
+              </mat-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-11 text-center mt-2">
+      <button mat-raised-button class="btn rounded-btn btnSecundario" type="button"
+        routerLink="/{{_appConfig.routes.BotonPanico}}">Cancelar</button>&nbsp;
+
+      <button mat-raised-button
+        [disabled]="(!_puedeModificar && this.parametro > 0) || (!_puedeCrear && this.parametro == 0)"
+        class="btn rounded-btn btnPpal" type="submit">Guardar</button>
+
+      <button mat-raised-button [disabled]="!_puedeEliminar" type="button"
+        class="btn rounded-btn btnSecundario float-right" (click)="onDelete()">Eliminar</button>
+    </div>
+  </form>
+</div>

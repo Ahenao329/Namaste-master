@@ -1,0 +1,74 @@
+<div id="mainDiv" class="div-main-page">
+  <div>
+    <h3>{{titulo}}</h3>
+    <hr />
+  </div>
+
+  <form (ngSubmit)="onSubmit()" id="form-Docs" class="pt-3" [formGroup]="userForm" novalidate>
+    <div class="col-sm-12 text-center" style="background-color: lightyellow;" *ngIf="_mostrarDivError">
+      {{_erroresValidacion}}
+    </div>
+    <div class="form-row">
+      <div class="col-sm-6 col-xs-12">
+        <mat-form-field class="col-sm-11 LabelForm">
+          <input matInput placeholder="Código parametro funcional" type="text" formControlName="idParametroFuncional"
+            maxlength="10" required readonly>
+          <mat-error *ngFor="let validation of errors.RequeridoNumber">
+            <mat-error class="error-message" *ngIf="userForm.get('idParametroFuncional').hasError(validation.type) 
+      && (userForm.get('idParametroFuncional').dirty || userForm.get('idParametroFuncional').touched)">
+              {{validation.message}}
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-6 col-xs-12">
+        <mat-form-field class="col-sm-11 LabelForm">
+          <input matInput placeholder="Nombre" type="text" formControlName="nombre" maxlength="200" required readonly>
+          <mat-error *ngFor="let validation of errors.Requerido">
+            <mat-error class="error-message" *ngIf="userForm.get('nombre').hasError(validation.type) 
+      && (userForm.get('nombre').dirty || userForm.get('nombre').touched)">
+              {{validation.message}}
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-sm-6 col-xs-12" *ngIf="_mostrarInput">
+        <mat-form-field class="col-sm-11 LabelForm">
+          <input matInput placeholder="Valor" type="text" formControlName="valor" maxlength="6" required>
+          <mat-error *ngFor="let validation of errors.Requerido">
+            <mat-error class="error-message" *ngIf="userForm.get('valor').hasError(validation.type) 
+      && (userForm.get('valor').dirty || userForm.get('valor').touched)">
+              {{validation.message}}
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-12 col-xs-12" *ngIf="!_mostrarInput">
+        <mat-form-field class="col-sm-11 LabelForm">
+          <textarea rows="8" #txtValor matInput placeholder="valor" type="text" formControlName="valor"
+            maxlength="500"> </textarea>
+          <mat-hint align="start">{{this.userForm.controls.value.length}} / 500</mat-hint>
+          <mat-error *ngFor="let validation of errors.Requerido">
+            <mat-error class="error-message" *ngIf="userForm.get('valor').hasError(validation.type) 
+      && (userForm.get('valor').dirty || userForm.get('valor').touched)">
+              {{validation.message}}
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="col-md-11 text-center mt-2">
+      <button mat-raised-button class="btn rounded-btn btnSecundario" type="button"
+        routerLink="/{{_appConfig.routes.ParametrosFuncionales}}">Cancelar</button>&nbsp;
+
+      <button mat-raised-button [disabled]="!_puedeModificar" class="btn rounded-btn btnPpal"
+        type="submit">Guardar</button>
+
+    </div>
+  </form>
+
+</div>

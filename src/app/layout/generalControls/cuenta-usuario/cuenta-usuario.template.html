@@ -1,0 +1,39 @@
+<div id="contenido">
+
+    <div class="form-row">
+
+        <div class="col-sm-4 divFoto mt-2">
+            <div>
+                <img class="user-avatar" [src]="_rutaImagenExistente">
+            </div>
+        </div>
+
+        <div class="col-sm-8 dvMenuOpciones">
+            <div>
+                <span class="cuentausuario">{{_usuario}}</span>
+            </div>
+            <div>
+                <small class="perfil">{{_perfilUsuario}}</small>
+            </div>
+
+            <ul class="navbar-nav ml-auto opcionesusuario">
+                <li class="iconMenu mt-2">
+                    <a (click)="onCambiarFotoClick()" class="white-text">
+                        Editar perfil
+                    </a>
+                </li>
+                <li class="iconMenu  mt-1">
+                    <a class="white-text" (click)="onCambiarContrasena()">
+                        Cambiar contraseña
+                    </a>
+                </li>
+                <li class="iconMenu  mt-1">
+                    <a class="white-text" [routerLink]="['/login']" (click)="onLoggedout()">
+                        Cerrar sesión
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>

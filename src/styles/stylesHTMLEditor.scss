@@ -1,0 +1,27 @@
+@import "src/assets/config/cliente/styles/variables.scss";
+
+.editor-titulo1 {
+  color: var(--color-principal);  
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.editor-titulo1-color2 {
+  color: var(--color-secundario);  
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.editor-titulo2 {
+  color: var(--color-principal);  
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.editor-titulo2-color2 {
+  color: var(--color-secundario);  
+  font-size: 15px;
+  font-weight: bold;
+}
+
+

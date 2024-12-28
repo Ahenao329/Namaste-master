@@ -1,0 +1,11 @@
+<div id="mainDiv" class="div-main-page">
+    <div>
+        <h3><span class="material-icons">pie_chart</span>Reporte distribución</h3>
+        <hr style="margin-top: 0px; margin-bottom: 3px;" />
+        <app-filtro-reporte-control (mostrarGrafica)="cambioEstado($event)" (enviarModelo)="recibirModelo($event)">
+        </app-filtro-reporte-control>
+        <div style="max-width: 1000px;margin:auto;">
+            <app-grafica-torta-control *ngIf="mostrarGrafica" [dataConfig]="datosGrafica"></app-grafica-torta-control>
+        </div>
+    </div>
+</div>

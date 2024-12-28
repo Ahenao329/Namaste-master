@@ -1,0 +1,94 @@
+<form (ngSubmit)="onSubmit()" id="form-Docs" [formGroup]="reportForm" novalidate>
+    <div *ngIf="mostrarFiltros" class="form-row text-center">
+        <div class="col-sm-6 col-xs-12">
+            <mat-form-field class="col-sm-auto pr-2">
+                <input matInput class="form-control cus-input-calendar" placeholder="Fecha Inicial" angular-mydatepicker
+                    (dateChanged)="onChanged()" formControlName="fechaInicialView" [options]="calendarOptions"
+                    #dpRDfechaInicial="angular-mydatepicker" readonly />
+            </mat-form-field>
+            <div class="div-btn-calendar ml-2">
+                <button type="button" class="btn btn-default cus-btn-calendar"
+                    (click)="dpRDfechaInicial.toggleCalendar()" [disabled]="_soloLectura">
+                    <i class="fa fa-calendar cus-icono-calendar" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+            <mat-form-field class="col-sm-auto pr-2">
+                <input matInput class="form-control cus-input-calendar" placeholder="Fecha Final" angular-mydatepicker
+                    (dateChanged)="onChanged()" formControlName="fechaFinalView" [options]="calendarOptions"
+                    #dpRDfechaFinal="angular-mydatepicker" readonly />
+            </mat-form-field>
+            <div class="div-btn-calendar ml-2">
+                <button type="button" class="btn btn-default cus-btn-calendar" (click)="dpRDfechaFinal.toggleCalendar()"
+                    [disabled]="_soloLectura">
+                    <i class="fa fa-calendar cus-icono-calendar" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+        <div class="col-sm-6  col-xs-12">
+            <mat-form-field class="col-md-11">
+                <mat-select (selectionChange)="onLlenarUsuariosByLider($event.value)" placeholder="Líder"
+                    formControlName="idUsuarioLider" required>
+                    <mat-option *ngFor="let item of _dataUsuariosLider" [value]="item.idUsuario">
+                        {{item.nombre}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngFor="let validation of errors.Requerido">
+                    <mat-error class="error-message" *ngIf="reportForm.get('idUsuarioLider').hasError(validation.type) 
+      && (reportForm.get('idUsuarioLider').dirty || reportForm.get('idUsuarioLider').touched)">
+                        {{validation.message}}
+                    </mat-error>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div *ngIf="esUsuario() || esResponsableSaludEmocional()" class="col-sm-6  col-xs-12">
+            <mat-form-field class="col-md-11">
+                <mat-select (selectionChange)="onChanged()" placeholder="Usuario" formControlName="idUsuario" required>
+                    <mat-option *ngFor="let item of _dataUsuariosByLider" [value]="item.idUsuario">
+                        {{item.nombre}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngFor="let validation of errors.Requerido">
+                    <mat-error class="error-message" *ngIf="reportForm.get('idUsuario').hasError(validation.type) 
+      && (reportForm.get('idUsuario').dirty || reportForm.get('idUsuario').touched)">
+                        {{validation.message}}
+                    </mat-error>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div *ngIf="esResponsableSaludEmocional()" class="col-sm-6  col-xs-12">
+            <mat-form-field class="col-md-11">
+                <mat-select (selectionChange)="onChanged()" placeholder="Cargo/Profesión" formControlName="idCargo" required>
+                    <mat-option *ngFor="let item of _dataCargos" [value]="item.idCargo">
+                        {{item.nombre}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngFor="let validation of errors.Requerido">
+                    <mat-error class="error-message" *ngIf="reportForm.get('idCargo').hasError(validation.type) 
+      && (reportForm.get('idCargo').dirty || reportForm.get('idCargo').touched)">
+                        {{validation.message}}
+                    </mat-error>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div *ngIf="esResponsableSaludEmocional()" class="col-sm-6  col-xs-12">
+            <mat-form-field class="col-md-11">
+                <mat-select (selectionChange)="onChanged()" placeholder="Área" formControlName="idArea" required>
+                    <mat-option *ngFor="let item of _dataAreas" [value]="item.idArea">
+                        {{item.nombre}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngFor="let validation of errors.Requerido">
+                    <mat-error class="error-message" *ngIf="reportForm.get('idArea').hasError(validation.type) 
+      && (reportForm.get('idArea').dirty || reportForm.get('idArea').touched)">
+                        {{validation.message}}
+                    </mat-error>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div style="margin: auto;" class="col-md-11 text-center">
+            <button mat-raised-button type="submit" class="btn rounded-btn btnPpal">Filtrar</button>
+        </div>
+    </div>
+</form>

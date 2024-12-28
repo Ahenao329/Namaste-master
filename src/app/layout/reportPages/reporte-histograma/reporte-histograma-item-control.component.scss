@@ -1,0 +1,10 @@
+@import "src/assets/config/cliente/styles/variables.scss";
+.div-content {
+    background-color: var(--color-principal-medio);
+    box-shadow: 1px 1px 7px 0px $color-gris-medio;
+    border-radius: 10px;
+
+    padding: 20px;
+    margin-top: 10px;
+    min-height: 50px;
+}

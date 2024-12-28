@@ -1,0 +1,112 @@
+<div class="ibox">
+  <div class="ibox-title text-primary">
+    <h4 [innerHtml]="boxTitle" *ngIf="!modalMode"></h4>
+    <div class="pull-right" style="margin-top: -30px;" *ngIf="addMethod && showAdd">
+      <button type="button" class="btn btn-primary btnListado btn-sm" (click)="add()" style="margin-top: -5px;">
+        <span class="fa fa-plus"></span>
+        Agregar
+      </button>
+    </div>
+  </div>
+
+  <div class="ibox-content">
+    <div class="row m-b-sm m-t-sm">
+
+      <div class="col-md-6">
+
+        <div class="input-group mb-2" *ngIf="showSearchControl">
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-white btn-sm" (click)="clearSearch()">
+              <span class="fa fa-refresh"></span>
+            </button>
+          </span>
+          <select [(ngModel)]="searchField" name="CampoBusqueda" placeholder="Campo de búsqueda" class="ui fluid search selection dropdown">
+            <option *ngFor="let item of fields" [value]="item.name">
+              {{item.display}}
+            </option>
+          </select>
+          <input type="text" placeholder="Buscar" class="input-sm form-control searchControlSS" type="search" name="searchControl"
+            #searchControl="ngModel" [(ngModel)]="searchText.value" maxlength="50" results="5" (keypress)="searchOnKeyPress($event)"
+            appTextHelper />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-sm btn-primary btnListado" (click)="search()">
+              <span class="fa fa-search"></span>
+            </button>
+          </span>
+        </div>
+
+      </div>
+
+      <div class="col-md-6">
+        <div class="pull-right">
+          <div style="display: inline-block;" *ngIf="paginador.totalRegistros > 0">
+            <span>Viendo
+              <b>{{paginador.primerRegistro}}</b>–
+              <b>{{paginador.ultimoRegistro}}</b>&nbsp;de&nbsp;
+              <b>{{paginador.totalRegistros}}</b>
+            </span>
+            <div class="btn-group btn-group-sm">
+              <button type="button" class="btn btn-primary btnPaginador" (click)="pageChanged(paginador.paginaActual - 1)"
+                [disabled]="paginador.primerRegistro <= 1">
+                <span class="fa fa-chevron-left"></span>
+              </button>
+              <button type="button" class="btn btn-primary btnPaginador" (click)="pageChanged(paginador.paginaActual + 1)"
+                [disabled]="paginador.ultimoRegistro >= paginador.totalRegistros">
+                <span class="fa fa-chevron-right"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th style="width: 5%;" class="text-center">#</th>
+            <th *ngFor="let f of fields" [ngClass]="alignCss(f)">
+              <span *ngIf="f.allowSorting" class="app-link" (click)="sort(f)">
+                <span [ngClass]="sortClass(f)"></span>&nbsp;{{f.display}}
+              </span>
+              <span *ngIf="!f.allowSorting">{{f.display}}</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let d of data; let i = index">
+            <td class="text-center">{{paginador.primerRegistro + i}}</td>
+            <td [ngClass]="alignCss(f)" *ngFor="let f of fields">
+              <div *ngIf="f.link">
+                <div *ngIf="(f.formatter && f.formatter.length > 0)">
+                  <a class="text-primary text-navy" (click)="edit(d)">
+                    <span [innerHtml]="d[f.name] | dynamic:f.pipe:f.formatter"></span>
+                  </a>
+
+                </div>
+                <div *ngIf="!(f.formatter && f.formatter.length > 0)">
+                  <a class="text-navy" (click)="edit(d)">{{d[f.name]}}</a>
+                </div>
+              </div>
+              <div *ngIf="f.image">
+                <img src="{{f.image.source}}" height="30px" style="cursor:pointer;" (click)="controlClick(d)">
+              </div>
+              <div *ngIf="!f.link && !f.image">
+                <div *ngIf="(f.formatter && f.formatter.length > 0)">
+                  <span *ngIf="d[f.name] !=null" [innerHtml]="d[f.name] | dynamic:f.pipe:f.formatter"></span>
+                </div>
+                <div *ngIf="(!(f.formatter && f.formatter.length > 0) && (f.display != 'Activo'))">
+                  <span *ngIf="d[f.name] !=null" [innerHtml]="d[f.name]"></span>
+                </div>
+                <div *ngIf="(f.display == 'Activo')">
+                  <span class="fa fa-check" *ngIf="d[f.name]"></span>
+                  <span class="fa fa-times" *ngIf="!d[f.name]"></span>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

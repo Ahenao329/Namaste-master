@@ -1,0 +1,18 @@
+<div class="div-main ">
+    <div class="container div-content">
+        <div class="row ">
+            <div class="col">
+                <strong>{{modelo.titulo}}</strong>
+                <br />
+                <div style="display: contents;" class="row">
+                    {{modelo.descripcion}}
+                </div>
+            </div>
+            <div class="col col-lg-2">
+                <button (click)="onSubmit()" mat-button class="btnAdjunto ">
+                    <mat-icon class="icono-adjunto" aria-hidden="false">{{nombreIcono}}</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<div id="mainDiv" class="div-main-page">
+    <div>
+        <h3>{{titulo}}</h3>
+        <hr />
+    </div>
+
+    <form (ngSubmit)="onSubmit()" id="form-Docs" class="pt-3" [formGroup]="categoriaHerramientaCajaForm" novalidate >
+        <div class="form-row">
+            <div class="col-sm-6 col-xs-12">
+                <mat-form-field class="col-sm-11 LabelForm">
+                    <input matInput placeholder="Nombre" type="text" formControlName="nombre" maxlength="100" required>
+                    <mat-error *ngFor="let validation of errors.Requerido">
+                        <mat-error class="error-message" *ngIf="categoriaHerramientaCajaForm.get('nombre').hasError(validation.type) 
+      && (categoriaHerramientaCajaForm.get('nombre').dirty || categoriaHerramientaCajaForm.get('nombre').touched)">
+                            {{validation.message}}
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-sm-6 col-xs-12 ssFieldActivo">
+                <mat-checkbox formControlName="activo" labelPosition="before">
+                    Activo
+                </mat-checkbox>
+            </div>
+        </div>
+        <div class="col-md-11 text-center mt-5">
+            <button mat-raised-button class="btn rounded-btn btnSecundario" type="button"
+                routerLink="/{{_appConfig.routes.CategoriaHerramientaCaja}}">Cancelar</button>&nbsp;
+
+            <button mat-raised-button [disabled]="!_puedeModificar || (!_puedeCrear && this.parametro == 0)"
+                class="btn rounded-btn btnPpal" type="submit">Guardar</button>
+
+            <button mat-raised-button [disabled]="!_puedeEliminar" type="button"
+                class="btn rounded-btn btnSecundario float-right" (click)="onDelete()">Eliminar</button>
+        </div>
+     
+   
+      
+
+    </form>
+</div>

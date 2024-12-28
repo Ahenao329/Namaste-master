@@ -1,0 +1,21 @@
+<app-header [onUserProfile]="onUserProfile" [publicMode]="publicMode"></app-header>
+<app-sidebar *ngIf="_mostrarSideBar"></app-sidebar>
+<section class="main-container" [ngClass]="{'with-menu': _mostrarSideBar}">
+    <router-outlet></router-outlet>
+    <div id="footer">
+        <div class="foot-bar">
+            <div class="foot-content">
+                <span class="foot-text footMargin">© Todos los derechos Infinitysoft SAS 2021</span>
+                <span class="foot-text footMargin">Sitio web diseñado para MS Edge Chromium y Google Chrome</span>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-right-sidebar box-title="Mi cuenta" [cerrar-ventana]="onCerrar" *ngIf="rightOptions[0]">
+    <div class="control-content">
+        <app-cuenta-usuario></app-cuenta-usuario>
+    </div>
+
+</app-right-sidebar>

@@ -1,0 +1,54 @@
+@import "src/assets/config/cliente/styles/variables.scss";
+
+.main-container {
+    margin-top: 62px;
+    -ms-overflow-x: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: relative;
+    overflow: hidden;
+}
+@media screen and (max-width: 992px) {
+    .main-container {
+        margin-left: 0px !important;
+    }
+}
+
+.with-menu{
+    margin-left: 290px;
+    //padding: 15px;
+}
+
+//Footer
+.foot-bar {
+    height: 30px;
+    padding: 3px 3px;
+    background-color: var(--color-footer);
+    border-top: 1px solid var(--color-footer);
+    bottom: 0;
+    left: 0;
+    position: fixed;    
+    right: 0;
+    z-index: 1000;  
+    width: 100%;  
+    box-shadow: 0px 0px 1px 0px #c6c6c6;    
+    display: table;
+}
+
+.foot-content{
+    display: table-cell;
+    vertical-align: middle; 
+    line-height: 12px;
+}
+
+.foot-text {
+    color:  var(--color-texto-footer);
+    font-size: 12px;
+    text-align: center;  
+    margin-left: 10px;
+}
+
+.footMargin
+{
+    display: block;    
+}

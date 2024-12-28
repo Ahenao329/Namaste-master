@@ -1,0 +1,13 @@
+<div [@routerTransition] class="div-main-page">
+  <div class="divGridListarAdmin">
+    <div class="animated fadeIn">
+
+      <app-list boxTitle="<span class='fa fa-sticky-note'></span> Parámetros HTML" [fields]='fields'
+        [initSortField]="sorting" [data]="data" [showAdd]="false" [paginador]="pagination"
+        [modalMode]="false" [editMethod]="edit" [queryMethod]="query" [searchValueInit]="searchValue"
+        [searchFieldInit]="searchField">
+
+      </app-list>
+    </div>
+  </div>
+</div>

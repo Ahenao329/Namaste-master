@@ -1,0 +1,9 @@
+{
+    "env": {
+        "name": "PROD"
+    },
+    "apiServer": {
+        "urlAPI": "http://localhost/ApiNavPagoEnLinea/api/v1/{0}/{1}",
+        "urlSite": "http://localhost/ApiNavPagoEnLinea/"       
+    }
+}

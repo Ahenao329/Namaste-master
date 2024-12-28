@@ -1,0 +1,12 @@
+<div class="sidebar">
+    <div>
+        <span class="tituloside">{{ title }}</span>
+        <a class="pull-right" href="javascript: void(0)" (click)="onCerrar()">
+            <i class="fa fa-times close-icon"></i>
+        </a>
+    </div>
+    <hr />
+    <div>
+        <ng-content select=".control-content"></ng-content>
+    </div>
+</div>

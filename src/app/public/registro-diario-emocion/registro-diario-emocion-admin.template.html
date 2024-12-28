@@ -1,0 +1,76 @@
+<div id="mainDiv" class="div-main-page">
+  <div class="text-center">
+    <h3>{{titulo}}</h3>
+    <hr />
+  </div>
+  <form (ngSubmit)="onSubmit()" id="form-Docs" class="pt-2" [formGroup]="userForm" novalidate>
+
+    <div *ngIf="!tokenValido && errorMensaje" class="mt-2 text-center">
+      <mat-error>
+        <i class="fas fa-times alerta">{{errorMensaje}}</i>
+      </mat-error>
+    </div>
+    <div *ngIf="tokenValido">
+      <div *ngIf="creado" class="mt-2 mensajes text-center">
+        <i class="fas fa-check alerta">Registro creado con éxito.</i>
+      </div>
+      <div *ngIf="existe" class="mt-2 mensajes text-center">
+        <i class="fas fa-check alerta">Ya se había hecho el registro previamente para el día de hoy.</i>
+      </div>
+      <div class="mt-4 mensajes ">
+        <h5 class="text-center"> Me siento {{modelo.tipoEmocionNombre}}</h5>
+        <div class="mt-3 text-center ">
+          <img class="img-icono img-fluid responsive " [src]="modelo.tipoEmocionRutaImagenFrontEnd">
+        </div>
+      </div>
+      <div class="mt-4 panel panel-default div-observaciones">
+        <div class="panel-heading">
+          <div class="mt-3 text-center mensajes">
+            <h5 class="text-center">Opcionalmente puedes agregar o actualizar la observación para aclarar la emoción
+              reportada para este registro,
+              <br>
+              y así tendrás una mejor atención en caso de usar el botón de pánico o tener atención de parte del
+              responsable de salud emocional.
+            </h5>
+          </div>
+        </div>
+        <div class="panel-body mb-2">
+          <div class="form-row">
+            <div class="col-sm-12">
+              <div class="control-content">
+                <div>
+                  <mat-form-field class="col-sm-11 LabelForm">
+                    <textarea rows="5" matInput placeholder="Observaciones" formControlName="observaciones"
+                      maxlength="1000" required></textarea>
+                    <mat-hint align="start">{{this.userForm.controls.observaciones.value.length}} / 1.000</mat-hint>
+                    <mat-error *ngFor="let validation of errors.Requerido">
+                      <mat-error class="error-message" *ngIf="userForm.get('observaciones').hasError(validation.type) 
+                && (userForm.get('observaciones').dirty || userForm.get('observaciones').touched)">
+                        {{validation.message}}
+                      </mat-error>
+                    </mat-error>
+                  </mat-form-field>
+                  <button type="submit" mat-raised-button
+                    [disabled]="(!_puedeModificar && this.parametro > 0) || (!_puedeCrear && this.parametro == 0)"
+                    class="btn rounded-btn btnPpal">
+                    <mat-icon aria-hidden="false">save</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-5 text-center">
+        <button *ngIf="tokenValido" (click)="abrirPopupSolicitudAlertaPanico()" mat-button color="warn" type="button"
+          class="btn btn-panico">
+          <i class="fas fa-exclamation-circle">&nbsp;Botón<br>de pánico</i>
+        </button>
+      </div>
+      <div class="mt-5 text-center" style="max-width: 1200px;margin:auto;" *ngIf="contenidoHTML">
+        <h3>A continuación te presentamos material que quizá te guste:</h3>
+        <div [innerHTML]="contenidoHTML"> </div>
+      </div>
+    </div>
+  </form>
+</div>

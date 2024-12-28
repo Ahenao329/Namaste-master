@@ -1,0 +1,44 @@
+@import "src/assets/config/cliente/styles/variables.scss";
+
+.contenido {
+}
+
+.divFoto {
+    margin-top: 8px;
+}
+
+.dvMenuOpciones {
+    padding: 8px 5px 0px 15px;
+}
+
+.opcionesusuario,
+.opcionesusuario a {
+    color: va(--color-controles);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.opcionesusuario a:hover {
+    text-decoration: underline;
+}
+
+.divFoto img {
+    width: 88px !important;
+    height: 88px !important;
+    border-radius: 50%;
+}
+
+.cuentausuario {
+    font-size: 14px !important;    
+    font-family: Roboto;
+    font-weight: bold;
+    color: var(--color-controles);
+}
+
+.perfil {
+    color: var(--color-controles);
+    font-size: 12px;
+    font-weight: 500;
+    font-family: Roboto;
+}

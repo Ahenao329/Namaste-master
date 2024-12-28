@@ -1,0 +1,46 @@
+<form (ngSubmit)="onSubmit()" id="form-Docs" [formGroup]="userForm" novalidate class="col-md-12">
+    <div mat-dialog-content class="mb-1">
+
+        <div>
+            <h2 mat-dialog-title class="text-center">
+                {{ _tituloBase }}</h2>
+            <hr>
+        </div>
+
+        <div class="col-sm-12 text-center pt-2" class="divError" *ngIf="_mostrarDivError">
+            {{_errorMostrar}}
+        </div>
+
+        <div class="form-row">
+            <div class="col-sm-12 divFoto">
+                <app-seleccionar-imagen-control [soloLectura]="_soloLectura" [rutaImagen]="_rutaImagenExistente"
+                    (onImagenSeleccionada)="onImagenSeleccionada($event)">
+                </app-seleccionar-imagen-control>
+            </div>
+        </div>
+
+        <div class="form-row mt-2">
+            <div class="col-sm-12 col-xs-12">
+                <mat-form-field class="col-sm-12 LabelForm">
+                    <input matInput placeholder="Nombre" type="text" formControlName="nombre" maxlength="100" required>
+                    <mat-error *ngFor="let validation of errors.Requerido">
+                        <mat-error class="error-message" *ngIf="userForm.get('nombre').hasError(validation.type) 
+                && (userForm.get('nombre').dirty || userForm.get('nombre').touched)">
+                            {{validation.message}}
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+    <div mat-dialog-actions class="col-md-12 text-center">
+
+        <div class="form-row p-2 left">
+            <button mat-raised-button class="btn rounded-btn btnPpal" type="submit">Guardar</button>
+
+            <button mat-raised-button class="btn rounded-btn btnSecundario" style="margin-left: 30px !important;"
+                type="button" (click)="onNoClick()">Cancelar</button>&nbsp;
+        </div>
+    </div>
+</form>

@@ -1,0 +1,56 @@
+:root {
+  --color-principal-intenso: #7407C8;
+  --color-principal: #7407C8;
+  --color-principal-medio: #C79CE9;
+
+  --color-secundario: #F4D630;
+  --color-secundario-medio: #FCF7DC;
+
+  --color-terciario: #4AB7BF;
+
+  --color-gris: #666;
+  --color-gris-medio: #aaa;
+  --color-gris-claro: gainsboro;
+  
+  //Menu
+  --color-fondo-menu: #FFF ;
+  --color-over-menu: var(--color-principal );
+  --color-activo-menu: var(--color-principal );// #f4f4f4;
+  --color-encabezado-menu: #F2E3FF;
+  --color-letra-menu:var(--color-principal);
+  --color-letra-nested-menu: var(--color-principal);
+  --color-letra-nested-over-menu: var(--color-principal);//está quemado el fondo 243,243,243
+
+  //Letras, titulos
+  //--color-secundario: #505050;
+  --color-controles: #54585a;
+
+  //right-sidebar
+  --color-fondoDerecho: #faf9f8;
+  --color_letraMenu: #212529;
+
+  //Banner
+  --color-fondo-banner: var(--color-principal);
+  --color-borde-fondo-banner: var(--color-principal-intenso);
+  --color-letra-banner: white;//var(--color-principal-medio);
+
+  //Footer
+  --color-footer: var(--color-principal);
+  --color-texto-footer: var(--color-principal-medio);// rgba(255, 255, 255, 0.88);
+ 
+
+}
+
+//Dupliado pero necesario para usar en controles usados en Exportación a Excel. Al parecer Winnovate no soporta variables CSS
+$color-principal-intenso: #1A4E55;
+$color-principal: #0B9D8F;
+$color-principal-medio: #C79CE9;
+
+$color-secundario: #F8BC06;
+$color-secundario-medio: #ECDDAA;
+
+$color-terciario: #F35B0B;
+
+$color-gris: #666;
+$color-gris-medio: #aaa;
+$color-gris-claro: gainsboro;

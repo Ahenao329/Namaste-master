@@ -1,0 +1,15 @@
+<div id="mainDiv" class="div-main-page">
+    <div>
+        <h3><span class="material-icons">timeline</span>Reporte histograma</h3>
+        <hr />
+    </div>
+    <app-filtro-reporte-control (mostrarGrafica)="cambioEstado($event)" (enviarModelo)="recibirModelo($event)">
+    </app-filtro-reporte-control>
+    <div style="max-width: 1000px;margin:auto;">
+        <app-grafica-linea-control *ngIf="mostrarGrafica" [dataConfig]="datosGrafica"></app-grafica-linea-control>
+    </div>
+    <div *ngIf="mostrarItems">
+        <app-reporte-histograma-item-control *ngFor="let item of datosParaItem" [model]="item">
+        </app-reporte-histograma-item-control>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<div mat-dialog-content class="">    
+    <h2 mat-dialog-title class="text-center mt-1"> {{data.titulo}}</h2>
+    <hr>
+    <div class="mt-3 mb-3" [innerHTML]="data.descripcion"></div>
+</div>
+<div mat-dialog-actions class="col-md-11 text-center">
+    <button mat-button (click)="onNoClick()" class="btn rounded-btn btnSecundario text-center">{{data.textoCancelar}}</button>    
+</div>

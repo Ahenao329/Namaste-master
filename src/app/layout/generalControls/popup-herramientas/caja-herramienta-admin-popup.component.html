@@ -1,0 +1,128 @@
+<div id="mainDiv" class="div-main-page">
+    <div>
+        <h3 mat-dialog-title="text-center">{{titulo}}</h3>
+        <hr />
+    </div>
+    <form (ngSubmit)="onSubmit()" id="form-Docs" class="pt-3" [formGroup]="herramientaCajaForm" novalidate>
+        <div mat-dialog-content class="mb-1">
+        <div class="form-row">
+            <div class="col-sm-6 col-xs-12">
+                <mat-form-field class="col-md-11">
+                    <mat-select (selectionChange)="onTipoSeleccionado($event.value)" placeholder="Tipo de herramienta"
+                        formControlName="idTipoHerramientaCaja" required>
+                        <mat-option *ngFor="let item of _dataTipoHerramientaCaja" [value]="item.idTipoHerramientaCaja">
+                            {{item.nombre}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngFor="let validation of errors.Requerido">
+                        <mat-error class="error-message"
+                            *ngIf="herramientaCajaForm.get('idTipoHerramientaCaja').hasError(validation.type) 
+      && (herramientaCajaForm.get('idTipoHerramientaCaja').dirty || herramientaCajaForm.get('idTipoHerramientaCaja').touched)">
+                            {{validation.message}}
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <mat-form-field class="col-md-11"  >
+                    <mat-select placeholder="Categoría de la herramienta" formControlName="idCategoriaHerramientaCaja"  
+                    required disabled="true" >
+                    <mat-option *ngFor="let item of _dataCategoriaHerramientaCaja"
+                            [value]="item.idCategoriaHerramientaCaja" >
+                            {{item.nombre}}                       
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngFor="let validation of errors.Requerido">
+                        <mat-error class="error-message"
+                            *ngIf="herramientaCajaForm.get('idCategoriaHerramientaCaja').hasError(validation.type) 
+      && (herramientaCajaForm.get('idCategoriaHerramientaCaja').dirty || herramientaCajaForm.get('idCategoriaHerramientaCaja').touched)">
+                            {{validation.message}}
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-sm-6 col-xs-12">
+                <mat-form-field class="col-sm-11 LabelForm">
+                    <input matInput placeholder="Título" type="text" formControlName="titulo" maxlength="100" required>
+                    <mat-error *ngFor="let validation of errors.Requerido">
+                        <mat-error class="error-message" *ngIf="herramientaCajaForm.get('titulo').hasError(validation.type) 
+      && (herramientaCajaForm.get('titulo').dirty || herramientaCajaForm.get('titulo').touched)">
+                            {{validation.message}}
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-sm-6 col-xs-12">
+                <mat-form-field class="col-sm-11 LabelForm">
+                    <textarea rows="3" matInput placeholder="Descripción" formControlName="descripcion" maxlength="100"
+                        required></textarea>
+                    <mat-hint align="start">{{this.herramientaCajaForm.controls.descripcion.value.length}} / 100
+                    </mat-hint>
+                    <mat-error *ngFor="let validation of errors.Requerido">
+                        <mat-error class="error-message" *ngIf="herramientaCajaForm.get('descripcion').hasError(validation.type) 
+              && (herramientaCajaForm.get('descripcion').dirty || herramientaCajaForm.get('descripcion').touched)">
+                            {{validation.message}}
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-row">
+            <div *ngIf="mostrarRuta" class="col-sm-6 col-xs-12">
+                <mat-form-field class="col-sm-12 LabelForm">
+                    <input matInput placeholder="Ruta" type="text" formControlName="ruta" maxlength="200" required>
+                    <mat-error *ngFor="let validation of errors.Requerido">
+                        <mat-error class="error-message" *ngIf="herramientaCajaForm.get('ruta').hasError(validation.type) 
+                              && (herramientaCajaForm.get('ruta').dirty || herramientaCajaForm.get('ruta').touched)">
+                            {{validation.message}}
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div *ngIf="mostrarAgregarArchivo" class="col-sm-6 col-xs-12">
+                <div>
+                    <button mat-raised-button [disabled]="false" type="button" class="btn rounded-btn btnTerciario"
+                        (click)="fileUpload.click()">Agregar archivo *</button>&nbsp; ({{extensionesArchivosCaja}})
+                    <span *ngIf="nombreIcono" class="material-icons">{{nombreIcono}}</span>
+                </div>
+                <div class="mt-2" style="display: none;">
+                    <input type='file' id='input' #inputFileUpload (change)="compress($event)" #fileUpload>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12" *ngIf="parametro!=0 && mostrarAgregarArchivo">
+                <a href="javascript:void(0);" (click)="onExportar()">Descargar archivo actual</a>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-sm-6 col-xs-12 ssFieldActivo">
+                <mat-checkbox formControlName="activo" labelPosition="before">
+                    Activo
+                </mat-checkbox>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div mat-dialog-actions class="col-md-12 text-center">
+
+        <div class="col-md-11 text-center mt-5">
+            <button mat-raised-button class="btn rounded-btn btnSecundario" type="button"
+            (click)="onCancelClicks()" >Cancelar</button>&nbsp;
+
+            <button mat-raised-button [disabled]="!_puedeModificar || (!_puedeCrear && this.parametro == 0)"
+                class="btn rounded-btn btnPpal" type="submit" (click)="onSubmitClicks(RefrescarPagina)" >Guardar</button>
+
+            <button mat-raised-button [disabled]="!_puedeEliminar" type="button" 
+                class="btn rounded-btn btnSecundario float-right" (click)="onDelete()" (click)="onDeleteClicks()" >Eliminar</button>
+        </div>
+    </div>
+    </form>
+</div>
+
+

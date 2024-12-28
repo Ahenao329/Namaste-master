@@ -1,0 +1,6 @@
+<div style="max-width: 1000px;margin:auto;" class="text-center">
+    <canvas *ngIf="mostrarGrafica" baseChart [chartType]="chartType" [datasets]="dataConfig.chartDatasets"
+        [labels]="dataConfig.chartLabels" [colors]="dataConfig.chartColors" [options]="dataConfig.chartOptions"
+        (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+    </canvas>
+</div>

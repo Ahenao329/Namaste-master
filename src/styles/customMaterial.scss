@@ -1,0 +1,97 @@
+@import "src/assets/config/cliente/styles/variables.scss";
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #666;
+}
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: #666;
+}
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color: #666;
+}
+
+.mat-focused .mat-form-field-label {
+    color: var(--color-secundario);
+}
+.mat-focused .mat-form-field-label.mat-accent {
+    color: var(--color-secundario);
+}
+.mat-focused .mat-form-field-label.mat-warn {
+    color: var(--color-secundario);
+}
+.mat-focused .mat-form-field-required-marker {
+    color: var(--color-secundario);
+}
+
+.mat-form-field-ripple {
+    background-color: var(--color-secundario-medio);
+}
+
+//Radio
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: var(--color-principal-intenso) !important;
+}
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: var(--color-principal-intenso) !important;
+}
+.mat-radio-button.mat-accent.mat-radio-ripple .mat-ripple-element {
+    background-color: var(--color-principal-intenso) !important;
+}
+
+
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color: var(--color-gris);
+}
+
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    background-color: var(--color-principal-intenso);
+}
+
+//Fin Radio
+
+//CheckBox
+//Remover el color pink durante la transición, en estado Indeterminado
+.mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    border-color: var(--color-controles) !important;
+    background-color: white !important;
+}
+.mat-checkbox:not(.mat-checkbox-disabled).mat-accent .mat-checkbox-ripple .mat-ripple-element {
+    background-color: rgba(178, 186, 51, 0.26);
+}
+
+.mat-checkbox-checked {
+    .mat-checkbox-checkmark {
+        background-color: var(--color-principal) !important;
+    }
+}
+.mat-checkbox-unchecked {
+    .mat-checkbox-background {
+        border-color: var(--color-gris) !important;
+        background-color: white !important;
+    }
+}
+//Fin checkbox
+
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color: var(--color-gris);
+}
+
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    background-color: var(--color-principal);
+}
+
+//Especificas [PROYECTO]
+/*.radioVerde.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {border-color: var(--color-secundario-medio) ;}
+.radioVerde.mat-radio-button.mat-accent .mat-radio-inner-circle {background-color:var(--color-secundario-medio) ;}
+.radioVerde.mat-radio-button.mat-accent.mat-radio-ripple .mat-ripple-element {background-color:var(--color-secundario-medio); }*/
+
+//Mat-select multiselect
+.mat-primary .mat-pseudo-checkbox-checked,
+.mat-primary .mat-pseudo-checkbox-indeterminate {
+    background: var(--color-principal) !important;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: var(--color-principal-intenso) !important;
+}

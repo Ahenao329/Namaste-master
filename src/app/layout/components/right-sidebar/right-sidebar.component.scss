@@ -1,0 +1,48 @@
+@import "src/assets/config/cliente/styles/variables.scss";
+
+
+.sidebar {
+    border-radius: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 62px;
+    right: 0px;
+    width: 320px;
+    border: none;
+    border-radius: 0;
+    overflow-y: auto;
+    background-color: var(--color-fondoDerecho);
+    bottom: 0;
+    overflow-x: hidden;
+    padding-bottom: 40px;
+    // -webkit-transition: all 0.2s ease-in-out;
+    // -moz-transition: all 0.2s ease-in-out;
+    // -ms-transition: all 0.2s ease-in-out;
+    // -o-transition: all 0.2s ease-in-out;
+    // transition: all 0.2s ease-in-out;  
+    -webkit-animation-name: flexPaneItem-slideContentIn;
+    animation-name: flexPaneItem-slideContentIn;
+    -webkit-animation-duration: .28s;
+    animation-duration: .28s;
+    -webkit-animation-timing-function: cubic-bezier(.8,0,.2,1);
+    animation-timing-function: cubic-bezier(.8,0,.2,1);
+    -webkit-animation-fill-mode: backwards;
+    animation-fill-mode: backwards;
+    -webkit-animation-delay: .04s;
+    animation-delay: .04s;    
+    padding: 10px 5px 5px 5px;
+    border-left: 1px solid #dbd7d7;
+    box-shadow: 2px 3px 5px 1px #787272;
+}
+
+.close-icon {
+    color: var(--color_letraMenu);
+}
+
+.tituloside
+{
+font-size: 14px !important;
+color: var(--color-controles);
+font-family: Roboto;
+font-weight: bold;
+}

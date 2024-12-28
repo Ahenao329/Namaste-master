@@ -1,0 +1,29 @@
+  .mensajes{
+    color: var(--color-principal);   
+  }
+  .alerta{
+      font-size: 30px;
+  }
+
+.img-icono
+{
+  max-height: 100px;
+}
+
+.div-observaciones
+{
+  border: solid 1px gainsboro;
+  border-collapse: collapse;
+  border-radius: 5px;
+  max-width: 1200px; 
+  margin: auto;
+}
+
+.btn-panico
+{
+  border:solid 1px red;
+  font-size: 18px;
+  height: 60px !important;
+}
+
+ 

@@ -1,0 +1,126 @@
+@import "src/assets/config/cliente/styles/variables.scss";
+
+.divMain{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;    
+    text-align: center;   
+    padding: 0px 15px;  
+    min-height: 100%;
+    height: 100%;   
+    vertical-align: middle;
+}
+
+.divIzquierdo{   
+    border-right: 2px solid gainsboro;    
+}
+
+.divDerecho{
+   
+}
+
+.divInterno{
+    
+}
+
+.vertical-center {
+    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh; /* These two lines are counted as one :-)       */
+  
+    display: flex;
+    align-items: center;
+  }
+
+  .logoCC
+  {
+    border:0px;
+    max-height: 120px;
+  }
+
+  .txtSubTitulo{
+    color:#444;
+    font-size: 18px;
+  }
+
+  .txtSubTitulo2{
+    color:#666;
+    font-size: 14px;
+  }
+
+  .divInstrucciones{
+    margin-top: 60px;
+    text-align: left;
+  }
+
+  .divButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .labelTit{
+    font-size: 15px;
+    color: #222;
+    font-weight: bold;
+}
+
+.divlogo
+{
+  background-color: transparent;
+}
+
+.contenedorBotones
+{
+  margin-top: 20px;
+}
+
+.btnLogin{       
+  background: var(--color-principal) !important;
+  border: 1px solid rgba(255, 255, 255, 0.568) !important;  
+  width: 250px;
+  height: 40px;
+  font-size: 18px;
+  margin-top: 5px;
+  border-radius: 4px !important;
+  outline: 0;
+  transition: background-color .2s ease; 
+  color: #fff !important;
+}
+
+//No robot
+/** custom checkboxes **/
+.noRobotCheck { display:none; } // to hide the checkbox itself /
+.noRobotCheck + label {
+  cursor: pointer;
+}
+
+.noRobotCheck + label:before {
+  font-family: FontAwesome;
+  display: inline-block;
+  font-size: 22px;
+  line-height: 22px;
+  cursor: pointer;
+  color: #444;
+  vertical-align: middle;
+}
+
+ // unchecked icon 
+ .noRobotCheck + label:before { 
+  content: "\f096"; 
+  letter-spacing: 4px; 
+  color: var(--color-principal);
+} // space between checkbox and label /
+
+ // checked icon /
+ .noRobotCheck:checked + label:before { 
+  content: "\f046"; 
+  letter-spacing: 4px; 
+  color: var(--color-principal);
+} // allow space for check mark /
+
+
+
+//Fin no robot

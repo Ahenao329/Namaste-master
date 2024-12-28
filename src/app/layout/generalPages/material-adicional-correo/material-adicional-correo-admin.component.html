@@ -1,0 +1,62 @@
+<div id="mainDiv" class="div-main-page">
+  <div>
+    <h3>{{titulo}}</h3>
+    <hr />
+  </div>
+
+  <form (ngSubmit)="onSubmit()" id="form-Docs" class="pt-3" [formGroup]="materialAdicionalCorreoForm" novalidate>
+    <div class="form-row">
+      <div class="col-sm-6 col-xs-12" *ngIf="this.calendarOptions.disableWeekends">
+        <mat-form-field class="col-sm-auto pr-2">
+          <input matInput class="form-control cus-input-calendar" placeholder="Fecha" angular-mydatepicker
+            formControlName="fechaView" [options]="calendarOptions" #dpRDFechaView="angular-mydatepicker" required
+            readonly />
+          <mat-error *ngFor="let validation of errors.Requerido">
+            <mat-error class="error-message" *ngIf="materialAdicionalCorreoForm.get('fechaView').hasError(validation.type) && (materialAdicionalCorreoForm.get('fechaView').dirty 
+              || materialAdicionalCorreoForm.get('fechaView').touched)">
+              {{validation.message}}
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+        <div class="div-btn-calendar ml-2">
+          <button type="button" class="btn btn-default cus-btn-calendar" (click)="dpRDFechaView.toggleCalendar()"
+            [disabled]="_soloLectura">
+            <i class="fa fa-calendar cus-icono-calendar" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-sm-12 col-xs-12">
+        <div class="col-sm-12 label-like-material">Contenido HTML</div>
+        <div class="col-sm-11">
+          <angular-editor formControlName="contenidoHTML" [config]="editorConfig">
+          </angular-editor>
+          <div>
+            <small> &nbsp;{{ (materialAdicionalCorreoForm.controls.contenidoHTML.value || "").length }}/{{ '100.000'
+              }}</small>
+          </div>
+          <mat-error *ngFor="let validation of errors.Requerido">
+            <mat-error class="error-message" *ngIf="materialAdicionalCorreoForm.get('contenidoHTML').hasError(validation.type) && (materialAdicionalCorreoForm.get('contenidoHTML').dirty 
+            || materialAdicionalCorreoForm.get('contenidoHTML').touched)">
+              {{validation.message}}
+            </mat-error>
+          </mat-error>
+          <div style="color: red;" class="label-validatation-error"
+            *ngIf="(materialAdicionalCorreoForm.controls.contenidoHTML.value).length >100000">
+            {{errorsLocal.maxLength100000}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-11 text-center mt-5">
+      <button mat-raised-button class="btn rounded-btn btnSecundario" type="button"
+        routerLink="/{{_appConfig.routes.MaterialAdicionalCorreo}}">Cancelar</button>&nbsp;
+
+      <button mat-raised-button [disabled]="!_puedeModificar || (!_puedeCrear && this.parametro == 0 )"
+        class="btn rounded-btn btnPpal" type="submit">Guardar</button>
+
+      <button mat-raised-button [disabled]="!_puedeEliminar" type="button"
+        class="btn rounded-btn btnSecundario float-right" (click)="onDelete()">Eliminar</button>
+    </div>
+  </form>
+</div>

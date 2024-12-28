@@ -1,0 +1,13 @@
+<div class="div-main-page" [@routerTransition]>
+  <div class="divGridListarAdmin">
+    <div class="animated fadeIn">
+
+      <app-list style="white-space: nowrap;" boxTitle="<span class='fas fa-bell'></span> Alertas de pánico" [fields]='fields'
+        [initSortField]="sorting" [data]="data" [addMethod]="add" [showAdd]="_puedeCrear" [paginador]="pagination"
+        [modalMode]="false" [editMethod]="edit" [queryMethod]="query" [searchValueInit]="searchValue"
+        [searchFieldInit]="searchField">
+
+      </app-list>
+    </div>
+  </div>
+</div>

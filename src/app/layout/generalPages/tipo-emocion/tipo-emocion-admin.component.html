@@ -1,0 +1,162 @@
+      <div id="mainDiv" class="div-main-page">
+        <div>
+            <h3>{{titulo}}</h3>
+            <hr />
+        </div>
+    
+        <form (ngSubmit)="onSubmit()" id="form-Docs" class="pt-3" [formGroup]="emoForm" novalidate>
+            <div class="form-row">
+                <div class="col-sm-6 col-xs-12">
+                    <mat-form-field class="col-sm-11 LabelForm">
+                        <input matInput placeholder="Id TipoEmocion" type="number" formControlName="idTipoEmocion" maxlength="10" required>
+                        <mat-error *ngFor="let validation of errors.Requerido">
+                            <mat-error class="error-message" *ngIf="emoForm.get('idTipoEmocion').hasError(validation.type) 
+          && (emoForm.get('idTipoEmocion').dirty || emoForm.get('idTipoEmocion').touched)">
+                                {{validation.message}}
+                            </mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-sm-6 col-xs-12">
+                    <mat-form-field class="col-sm-11 LabelForm">
+                        <input matInput placeholder="Nombre" type="text" formControlName="nombre" maxlength="100" required>
+                        <mat-error *ngFor="let validation of errors.Requerido">
+                            <mat-error class="error-message" *ngIf="emoForm.get('nombre').hasError(validation.type) 
+          && (emoForm.get('nombre').dirty || emoForm.get('nombre').touched)">
+                                {{validation.message}} 
+                            </mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+
+
+
+                <div class="form-row">
+                    <div class="col-sm-6 col-xs-12">
+
+
+                      <mat-form-field class="col-sm-11 LabelForm">
+                        <input matInput [ngxMatColorPicker]="picker" [formControl]="colorCtr" [disabled]="_soloLectura"
+                         formControlName="colorView"   maxlength="30" required   > 
+                         <div *ngIf="emoForm.value"></div>
+                        <mat-error *ngFor="let validation of errors.Requerido">
+                            <mat-error class="error-message" *ngIf="emoForm.get('colorView').hasError(validation.type) 
+          && (emoForm.get('colorView').dirty || emoForm.get('colorView').touched)">
+                                {{validation.message}}
+                            </mat-error>
+                        </mat-error>
+                        <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+                        <ngx-mat-color-picker #picker [touchUi]="touchUi" ></ngx-mat-color-picker>               
+                    </mat-form-field> 
+                        
+                        <!-- <mat-form-field class="col-sm-11 LabelForm">
+                            <input matInput   type="color"  formControlName="color"   maxlength="30" required   > 
+                            <mat-error *ngFor="let validation of errors.Requerido">
+                                <mat-error class="error-message" *ngIf="emoForm.get('color').hasError(validation.type) 
+              && (emoForm.get('color').dirty || emoForm.get('color').touched)">
+                                    {{validation.message}}
+                                </mat-error>
+                            </mat-error>
+                        </mat-form-field> -->
+                        <!-- <mat-form-field class="col-sm-11 LabelForm">
+                            <input matInput placeholder="Color" type="text" formControlName="color" maxlength="30" required>
+                            <mat-error *ngFor="let validation of errors.Requerido">
+                                <mat-error class="error-message" *ngIf="emoForm.get('color').hasError(validation.type) 
+              && (emoForm.get('color').dirty || emoForm.get('color').touched)">
+                                    {{validation.message}}
+                                </mat-error>
+                            </mat-error>
+                        </mat-form-field> -->
+                    </div>
+                    
+                    <div class="col-sm-6 col-xs-12">
+                        <mat-form-field class="col-sm-11 LabelForm">
+                            <input matInput placeholder="Criticidad" type="number" formControlName="criticidad" maxlength="10" min="0" max="9">
+                            <mat-error *ngFor="let validation of errors.criticidad">
+                                <mat-error class="error-message" *ngIf="emoForm.get('criticidad').hasError(validation.type) 
+                          && (emoForm.get('criticidad').dirty || emoForm.get('criticidad').touched)">
+                                    {{validation.message}}
+                                </mat-error>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                
+                        <div class="form-row">
+                            <div class="col-sm-6 col-xs-12">
+                                <mat-form-field class="col-sm-11 LabelForm">
+                                    <input matInput placeholder="Ruta de Imagen" type="text" formControlName="rutaImagen" maxlength="250" 
+                                    required>
+                                    <mat-error *ngFor="let validation of errors.rutaImagen">
+                                        <mat-error class="error-message" *ngIf="emoForm.get('rutaImagen').hasError(validation.type) 
+                                  && (emoForm.get('rutaImagen').dirty || emoForm.get('rutaImagen').touched)">
+                                            {{validation.message}}
+                                        </mat-error>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-6 col-xs-12">
+                                <div class="form-row">
+                                    <div class="col-sm-6 col-xs-12 ssFieldActivo">
+                                        <mat-checkbox formControlName="activo" labelPosition="before">
+                                            Activo
+                                        </mat-checkbox>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <mat-form-field class="col-sm-11 LabelForm">
+                            <textarea matInput placeholder="Descripción" type="text" formControlName="descripcion" maxlength="500" rows="3"></textarea>
+                            <mat-error *ngFor="let validation of errors.TextArea500">
+                                <mat-error class="error-message" *ngIf="emoForm.get('descripcion').hasError(validation.type) 
+                          && (emoForm.get('descripcion').dirty || emoForm.get('descripcion').touched)">
+                                    {{validation.message}}
+                                </mat-error>
+                            </mat-error>
+                        </mat-form-field>
+
+            <div class="col-md-11 text-center mt-5">
+                <button mat-raised-button class="btn rounded-btn btnSecundario" type="button"
+                    routerLink="/{{_appConfig.routes.TipoEmocion}}">Cancelar</button>&nbsp;
+    
+                <button mat-raised-button [disabled]="!_puedeModificar || (!_puedeCrear && this.parametro == 0)"
+                    class="btn rounded-btn btnPpal" type="submit">Guardar</button>
+    
+                <button mat-raised-button [disabled]="!_puedeEliminar" type="button"
+                    class="btn rounded-btn btnSecundario float-right" (click)="onDelete()">Eliminar</button>
+            </div>
+            <!-- <mat-form-field class="col-sm-11 LabelForm">
+                <input matInput [ngxMatColorPicker]="picker" [formControl]="emoForm.controls.color" formControlName="color" [disabled]="disabled" required>
+                <mat-error *ngFor="let validation of errors.Requerido">
+                    <mat-error class="error-message" *ngIf="emoForm.get('color').hasError(validation.type) 
+  && (emoForm.get('color').dirty || emoForm.get('color').touched)">
+                        {{validation.message}}
+                    </mat-error>
+                </mat-error>
+                <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+                <ngx-mat-color-picker #picker [touchUi]="touchUi" [color]="color"></ngx-mat-color-picker>               
+            </mat-form-field> -->
+
+                                    <!-- <mat-form-field class="col-sm-11 LabelForm">  
+                        <input matInput [ngxMatColorPicker]="picker" formControlName="colorView"   [disabled]="_soloLectura">
+                        <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+                        <ngx-mat-color-picker #picker [touchUi]="touchUi" [color]="color"></ngx-mat-color-picker>
+                         <mat-error *ngFor="let validation of errors.Requerido">
+                                <mat-error class="error-message" *ngIf="emoForm.get('colorView').hasError(validation.type) 
+              && (emoForm.get('colorView').dirty || emoForm.get('colorView').touched)">
+                                    {{validation.message}}
+                                </mat-error>
+                            </mat-error>
+                      </mat-form-field> -->
+
+            <div>        {{emoForm.value.colorView.hex | json}}        </div>
+
+        </form>
+    </div>

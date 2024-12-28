@@ -1,0 +1,62 @@
+<div id="mainDiv" class="div-main-page">
+    <h3 >
+        <mat-icon>home_repair_service</mat-icon>Caja de herramientas
+    </h3>
+
+    <form (ngSubmit)="onSubmit()" id="form-Docs" class="pt-3" [formGroup]="herramientaCajaBuscarForm" novalidate>
+        <div class="form-row">
+            <div class="col-sm-6  col-xs-12">
+                <mat-form-field class="col-md-11">
+                    <mat-select (selectionChange)="onChange()" placeholder="Tipo de herramienta"
+                        formControlName="idTipoHerramientaCaja" required>
+                        <mat-option *ngFor="let item of _dataTipoHerramientaCaja" [value]="item.idTipoHerramientaCaja">
+                            {{item.nombre}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngFor="let validation of errors.Requerido">
+                        <mat-error class="error-message"
+                            *ngIf="herramientaCajaBuscarForm.get('idTipoHerramientaCaja').hasError(validation.type) 
+      && (herramientaCajaBuscarForm.get('idTipoHerramientaCaja').dirty || herramientaCajaBuscarForm.get('idTipoHerramientaCaja').touched)">
+                            {{validation.message}}
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6  col-xs-12">
+                <mat-form-field class="col-md-11">
+                    <mat-select (selectionChange)="onChange()" placeholder="Categoría de la herramienta"
+                        formControlName="idCategoriaHerramientaCaja" required>
+                        <mat-option *ngFor="let item of _dataCategoriaHerramientaCaja"
+                            [value]="item.idCategoriaHerramientaCaja">
+                            {{item.nombre}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngFor="let validation of errors.Requerido">
+                        <mat-error class="error-message"
+                            *ngIf="herramientaCajaBuscarForm.get('idCategoriaHerramientaCaja').hasError(validation.type) 
+      && (herramientaCajaBuscarForm.get('idCategoriaHerramientaCaja').dirty || herramientaCajaBuscarForm.get('idCategoriaHerramientaCaja').touched)">
+                            {{validation.message}}
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-sm-6 col-xs-12">
+                <mat-form-field class="col-sm-11 LabelForm">
+                    <input matInput (keyup)="onChange()" placeholder="Palabras clave" type="text"
+                        formControlName="palabrasClave" maxlength="100">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-row mt-2">
+            <div class="col-md-11 text-center">
+                <button mat-raised-button class="btn rounded-btn btnPpal" type="submit">Buscar</button>
+            </div>
+        </div>
+    </form>
+    <div *ngIf="listadoRespuesta" class="form-row" style="display: inline;">
+        <app-consultar-herramienta-caja-item-control *ngFor="let item of listadoRespuesta" [model]="item">
+        </app-consultar-herramienta-caja-item-control>
+    </div>
+</div>

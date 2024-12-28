@@ -1,0 +1,34 @@
+<div id="mainDiv" class="div-main-page">
+  <div class="text-center">
+    <span style="font-size: 120px; color: darkgray;" class="material-icons">
+      help_outline
+    </span>
+    <h3>Solicitud de alerta emocional</h3>
+  </div>
+  <form (ngSubmit)="onSubmit()" id="form-Docs" [formGroup]="botonPanicoConfirmacionForm" novalidate>
+    <div style="justify-content: space-around;" class="form-row">
+      <mat-form-field class="col-sm-12 LabelForm">
+        <textarea rows="5" matInput placeholder="Observación de la solicitud" formControlName="observacionesSolicitante"
+          maxlength="1000" minlength="20" required></textarea>
+        <mat-hint align="start">{{this.botonPanicoConfirmacionForm.controls.observacionesSolicitante.value.length}} /
+          1.000</mat-hint>
+        <mat-error *ngFor="let validation of errors.Requerido">
+          <mat-error class="error-message"
+            *ngIf="botonPanicoConfirmacionForm.get('observacionesSolicitante').hasError(validation.type) 
+            && (botonPanicoConfirmacionForm.get('observacionesSolicitante').dirty || botonPanicoConfirmacionForm.get('observacionesSolicitante').touched)">
+            {{validation.message}}
+          </mat-error>
+          <mat-error *ngIf="this.botonPanicoConfirmacionForm.controls.observacionesSolicitante.value.length<20">
+            La observación debe tener mínimo 20 caracteres
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div style="margin: auto;" class="col-md-11 text-center">
+      <button mat-raised-button class="btn rounded-btn btnSecundario" type="button"
+        (click)="onClose('cancelar')">Cancelar</button>&nbsp;
+
+      <button mat-raised-button class="btn rounded-btn btnPpal" type="submit">Confirmar</button>
+    </div>
+  </form>
+</div>

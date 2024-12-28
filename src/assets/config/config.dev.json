@@ -1,0 +1,9 @@
+{
+    "env": {
+    "name": "DEV"
+     },   
+    "apiServer": {
+        "urlAPI": "http://namastepruebas.desarrolloinfinity.com/API/API/v1/{0}/{1}",
+        "urlSite": "http://namastepruebas.desarrolloinfinity.com/API/"                    
+    }
+}
